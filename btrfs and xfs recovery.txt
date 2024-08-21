@@ -1,0 +1,30 @@
+#BtrFS file system Crreation
+sudo apt install btrfs-tools
+
+#Create a mount point
+sudo mkdir –v /data
+
+#build a RAID system
+sudo mkfs.btrfs -L data -m raid5 -d raid5 -f /dev/sdb /dev/sdc /dev/sdd /dev/sde /dev/sdf
+
+#mount the drive in the terminal
+sudo mount /dev/sdb1 /data
+
+#Check the result 
+sudo df -h
+
+#Checking free space
+sudo btrfs filesystem usage /data
+
+#check the unmount array
+sudo umount /data
+
+#checking for damaged drive
+sudo btrfs filesystem show
+
+#replacing the damage drive
+btrfs replace start <removed device or its ID> <added device> <the path where btrfs is mounted>
+
+#recover a damaged volume
+sudo mount -o recovery /dev/sdb /mnt
+
